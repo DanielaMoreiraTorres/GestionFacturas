@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "FacturasAPI.Controllers.SeguridadController",
+    "Method": "Signin",
+    "RelativePath": "api/Seguridad/signin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "datos",
+        "Type": "FacturasAPI.Dominio.Modelo.InicioSesion",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FacturasAPI.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
