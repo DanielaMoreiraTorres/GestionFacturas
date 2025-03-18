@@ -17,27 +17,28 @@
                             <div class="mt-4">
                                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                     <div class="mb-3">
-                                        <label for="email">Usuario</label>
-                                        <input type="text" class="form-control" id="user" formControlName="user"
-                                            [ngClass]="{ 'is-invalid': submitted && f['user'].errors }"
+                                        <label for="usuario">Usuario</label>
+                                        <input type="text" class="form-control" id="usuario" formControlName="usuario"
+                                            [ngClass]="{ 'is-invalid': submitted && f['usuario'].errors }"
                                             placeholder="Usuario" />
-                                        <div *ngIf="submitted && f['user'].errors" class="invalid-feedback">
-                                            <div *ngIf="f['user'].errors?.['required']">Usuario es requerido</div>
+                                        <div *ngIf="submitted && f['usuario'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['usuario'].errors?.['required']">Usuario es requerido</div>
                                         </div>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="userpassword">Contraseña</label>
+                                        <label for="contrasena">Contraseña</label>
                                         <div class="input-group auth-pass-inputgroup">
-                                            <input type="password" class="form-control" formControlName="password"
+                                            <input type="password" class="form-control" formControlName="contrasena"
                                                 [ngClass]="{
-                            'is-invalid': submitted && f['password'].errors
+                            'is-invalid': submitted && f['contrasena'].errors
                           }" placeholder="Contraseña" aria-label="Password" aria-describedby="password-addon" />
                                             <button class="btn btn-light" type="button" id="password-addon">
                                                 <i class="mdi mdi-eye-outline"></i>
                                             </button>
-                                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                                                <div *ngIf="f['password'].errors?.['required']">Passord es requerido
+                                            <div *ngIf="submitted && f['contrasena'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['contrasena'].errors?.['required']">Contraseña es
+                                                    requerida
                                                 </div>
                                             </div>
                                         </div>
