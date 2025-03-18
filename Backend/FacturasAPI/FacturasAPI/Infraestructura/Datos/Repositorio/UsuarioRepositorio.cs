@@ -27,5 +27,10 @@ namespace FacturasAPI.Infraestructura.Datos.Repositorio
             await _context.SaveChangesAsync();
             return modelo;
         }
+
+        public async Task<Usuario?> VerificarToken(int id)
+        {
+            return await _context.Usuario.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
     }
 }

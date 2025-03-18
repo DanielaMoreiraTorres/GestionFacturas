@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{1EA02458-602D-46D6-B944-4B9DE74DBA40}|FacturasAPI\\FacturasAPI.csproj|solutionrelative:facturasapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1EA02458-602D-46D6-B944-4B9DE74DBA40}|FacturasAPI\\FacturasAPI.csproj|c:\\users\\mishe\\desktop\\tareas\\integritysolutions\\gestionfacturas\\backend\\facturasapi\\facturasapi\\infraestructura\\datos\\repositorio\\usuariorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EA02458-602D-46D6-B944-4B9DE74DBA40}|FacturasAPI\\FacturasAPI.csproj|solutionrelative:facturasapi\\infraestructura\\datos\\repositorio\\usuariorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1EA02458-602D-46D6-B944-4B9DE74DBA40}|FacturasAPI\\FacturasAPI.csproj|c:\\users\\mishe\\desktop\\tareas\\integritysolutions\\gestionfacturas\\backend\\facturasapi\\facturasapi\\controllers\\seguridadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1EA02458-602D-46D6-B944-4B9DE74DBA40}|FacturasAPI\\FacturasAPI.csproj|solutionrelative:facturasapi\\controllers\\seguridadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -36,46 +40,59 @@
               "RelativeDocumentMoniker": "FacturasAPI\\Program.cs",
               "ToolTip": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Program.cs",
               "RelativeToolTip": "FacturasAPI\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAAEQAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T19:19:30.672Z",
+              "WhenOpened": "2025-03-18T00:45:20.768Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "UsuarioRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Infraestructura\\Datos\\Repositorio\\UsuarioRepositorio.cs",
+              "RelativeDocumentMoniker": "FacturasAPI\\Infraestructura\\Datos\\Repositorio\\UsuarioRepositorio.cs",
+              "ToolTip": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Infraestructura\\Datos\\Repositorio\\UsuarioRepositorio.cs",
+              "RelativeToolTip": "FacturasAPI\\Infraestructura\\Datos\\Repositorio\\UsuarioRepositorio.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T00:22:44.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "IUsuarioServicio.cs",
               "DocumentMoniker": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Aplicacion\\Usuario\\IUsuarioServicio.cs",
               "RelativeDocumentMoniker": "FacturasAPI\\Aplicacion\\Usuario\\IUsuarioServicio.cs",
               "ToolTip": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Aplicacion\\Usuario\\IUsuarioServicio.cs",
               "RelativeToolTip": "FacturasAPI\\Aplicacion\\Usuario\\IUsuarioServicio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAEwAgAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-17T18:40:48.069Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UsuarioServicio.cs",
               "DocumentMoniker": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Aplicacion\\Usuario\\UsuarioServicio.cs",
               "RelativeDocumentMoniker": "FacturasAPI\\Aplicacion\\Usuario\\UsuarioServicio.cs",
               "ToolTip": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Aplicacion\\Usuario\\UsuarioServicio.cs",
               "RelativeToolTip": "FacturasAPI\\Aplicacion\\Usuario\\UsuarioServicio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAxwIoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-17T18:40:13.478Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SeguridadController.cs",
               "DocumentMoniker": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Controllers\\SeguridadController.cs",
               "RelativeDocumentMoniker": "FacturasAPI\\Controllers\\SeguridadController.cs",
               "ToolTip": "C:\\Users\\mishe\\Desktop\\Tareas\\IntegritySolutions\\GestionFacturas\\Backend\\FacturasAPI\\FacturasAPI\\Controllers\\SeguridadController.cs",
               "RelativeToolTip": "FacturasAPI\\Controllers\\SeguridadController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAzwBwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAqwCMAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-17T16:19:44.914Z",
               "EditorCaption": ""

@@ -1,8 +1,8 @@
 [
   {
     "ContainingType": "FacturasAPI.Controllers.SeguridadController",
-    "Method": "Signin",
-    "RelativePath": "api/Seguridad/signin",
+    "Method": "InicioSesion",
+    "RelativePath": "api/Seguridad/inicioSesion",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -13,6 +13,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacturasAPI.Controllers.SeguridadController",
+    "Method": "VerificarToken",
+    "RelativePath": "api/Seguridad/verficarToken",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -6,5 +6,6 @@ namespace FacturasAPI.Aplicacion.Usuario
     public interface IUsuarioServicio
     {
         Task<Respuesta> InicioSesion(InicioSesion modelo);
+        Task<Respuesta> VerificarToken(int usuarioId, string cabeceraAutenticacion);
     }
 }

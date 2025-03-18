@@ -1,6 +1,6 @@
-﻿using FacturasAPI.Dominio.Modelo;
+﻿using FacturasAPI.Dominio;
+using FacturasAPI.Dominio.Modelo;
 using FacturasAPI.Infraestructura.Datos.IRepositorio;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -28,9 +28,9 @@ namespace FacturasAPI.Aplicacion.Usuario
             {
                 return new Respuesta()
                 {
-                    IsSuccess = false,
-                    Message = "Login fallo",
-                    Errors = ["Usuario y/o clave incorrectos"]
+                    Exito = false,
+                    Mensaje = "Login fallo",
+                    Errores = ["Usuario y/o clave incorrectos"]
                 };
             }
 
@@ -38,9 +38,9 @@ namespace FacturasAPI.Aplicacion.Usuario
             {
                 return new Respuesta()
                 {
-                    IsSuccess = false,
-                    Message = "Login fallo",
-                    Errors = ["Usuario inactivo"]
+                    Exito = false,
+                    Mensaje = "Login fallo",
+                    Errores = ["Usuario inactivo"]
                 };
             }
 
@@ -56,22 +56,88 @@ namespace FacturasAPI.Aplicacion.Usuario
 
             return new Respuesta()
             {
-                IsSuccess = true,
-                Message = "Login de usuario correcto",
-                Data = new
+                Exito = true,
+                Mensaje = "Login de usuario correcto",
+                Datos = new
                 {
-                    User = new
+                    usuario = new
                     {
                         id = usuario.Id,
                         nombreUsuario = usuario.NombreUsuario,
                         nombres = usuario.Nombres,
                         apellidos = usuario.Apellidos,
+                        correo = usuario.Correo,
                     },
                     token,
                     refreshToken,
-                    expDate = jwt.ValidTo.ToString("dd/MM/yyyy HH:mm:ss.fff")
+                    expiracionToken = jwt.ValidTo.ToString("dd/MM/yyyy HH:mm:ss.fff")
                 }
             };
+        }
+
+        public async Task<Respuesta> VerificarToken(int usuarioId, string cabeceraAutenticacion)
+        {
+            Respuesta result = new()
+            {
+                Exito = false,
+                Mensaje = "Verificar Token fallo",
+                Errores = ["El token no es valido"]
+            };
+
+            if (usuarioId != null && cabeceraAutenticacion != null && cabeceraAutenticacion.StartsWith("Bearer "))
+            {
+                var token = cabeceraAutenticacion["Bearer ".Length..].Trim();
+                var usuarioResultado = await _usuarioRepositorio.VerificarToken(usuarioId);
+
+                if (usuarioResultado == null)
+                {
+                    return new Respuesta()
+                    {
+                        Exito = false,
+                        Mensaje = "Verificar token fallo",
+                        Errores = ["No se encontró el usuario"]
+                    };
+                }
+
+                if (!usuarioResultado.Activo)
+                {
+                    return new Respuesta()
+                    {
+                        Exito = false,
+                        Mensaje = "Verificar token fallo",
+                        Errores = ["Usuario inactivo"]
+                    };
+                }
+
+                if (usuarioResultado.Token != token)
+                {
+                    return new Respuesta()
+                    {
+                        Exito = false,
+                        Mensaje = "Check token fallo",
+                        Errores = ["El token cambió"]
+                    };
+                }
+
+                return new Respuesta(
+                    new
+                    {
+                        usuario = new
+                        {
+                            id = usuarioResultado.Id,
+                            nombreUsuario = usuarioResultado.NombreUsuario,
+                            nombres = usuarioResultado.Nombres,
+                            apellidos = usuarioResultado.Apellidos,
+                            correo = usuarioResultado.Correo,
+                        },
+                        token,
+                        refreshToken = usuarioResultado.RefreshToken,
+                        expiracionToken = usuarioResultado.ExpiracionToken?.ToString("dd/MM/yyyy HH:mm:ss.fff")
+                    }
+                );
+            }
+
+            return result;
         }
 
         JwtSecurityToken GenerarJWT(Dominio.Usuario usuario)
@@ -105,6 +171,6 @@ namespace FacturasAPI.Aplicacion.Usuario
             }
 
             return refeshToken;
-        }
+        }       
     }
 }

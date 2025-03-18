@@ -4,28 +4,28 @@ namespace FacturasAPI.Dominio.Modelo
 {
     public class Respuesta
     {
-        public bool IsSuccess { get; set; }
-        public string Message { get; set; } = string.Empty;
-        public List<string> Errors { get; set; } = [];
-        public object? Data { get; set; }
+        public bool Exito { get; set; }
+        public string Mensaje { get; set; } = string.Empty;
+        public List<string> Errores { get; set; } = [];
+        public object? Datos { get; set; }
 
         public Respuesta() { }
 
         public Respuesta(object data, string message = "OK")
         {
-            IsSuccess = true;
-            Data = data;
-            Message = message;
+            Exito = true;
+            Datos = data;
+            Mensaje = message;
         }
 
         public Respuesta(ModelStateDictionary ModelState)
         {
-            Errors = ModelState.Values
+            Errores = ModelState.Values
                     .SelectMany(v => v.Errors)
                     .Select(e => e.ErrorMessage)
                     .ToList();
 
-            IsSuccess = false;
+            Exito = false;
         }
     }
 }
