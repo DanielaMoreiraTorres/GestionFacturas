@@ -1,35 +1,30 @@
 <header id="page-topbar">
   <div class="navbar-header">
-    <div class="d-flex">
-      <button type="button" class="btn">
-        <a routerLink="/">INICIO</a>
-      </button>
-      <button type="button" class="btn">
-        <a routerLink="/">FACTURAS</a>
-      </button>
-      <button type="button" class="btn">
-        <a routerLink="/">CLIENTES</a>
-      </button>
-      <button type="button" class="btn">
-        <a routerLink="/">PRODUCTOS</a>
-      </button>
-      <button type="button" class="btn">
-        <a routerLink="/">USUARIOS</a>
-      </button>
+    <div class="d-flex nav-menu">
+      <button type="button" class="btn nav-item" (click)="cambiarContenido('/dashboard')"
+      [ngClass]="{'active': rutaActiva('/dashboard')}">INICIO</button>
+      <button type="button" class="btn nav-item" (click)="cambiarContenido('/facturas')"
+      [ngClass]="{'active': rutaActiva('/facturas')}">FACTURAS</button>
+      <button type="button" class="btn nav-item" (click)="cambiarContenido('/clientes')"
+      [ngClass]="{'active': rutaActiva('/clientes')}">CLIENTES</button>
+      <button type="button" class="btn nav-item" (click)="cambiarContenido('/productos')"
+      [ngClass]="{'active': rutaActiva('/productos')}">PRODUCTOS</button>
+      <button type="button" class="btn nav-item" (click)="cambiarContenido('/usuarios')"
+      [ngClass]="{'active': rutaActiva('/usuarios')}">USUARIOS</button>
     </div>
 
     <div class="d-flex">
       <div class="dropdown d-inline-block" dropdown>
         <button type="button" class="btn header-item" dropdownToggle id="page-header-user-dropdown">
-          <img class="rounded-circle header-profile-user" src={{photo}} alt="Foto">
-          <span class="d-none d-xl-inline-block ms-1">{{userNameCompleto}} </span>
+          <img class="rounded-circle header-profile-user" [src]="photo" alt="Foto">
+          <span class="d-none d-xl-inline-block ms-1">{{ userNameCompleto }} </span>
           <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-end" *dropdownMenu>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item text-danger" href="javascript: void(0);" (click)="cerrarSesion()"><i
-              class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
-            CERRAR SESIÓN</a>
+          <a class="dropdown-item text-danger" href="javascript:void(0);" (click)="cerrarSesion()">
+            <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> CERRAR SESIÓN
+          </a>
         </div>
       </div>
     </div>

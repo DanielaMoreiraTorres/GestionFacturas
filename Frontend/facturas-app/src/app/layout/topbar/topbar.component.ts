@@ -54,8 +54,11 @@ export class TopbarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/auth/login']);
   }
 
+  cambiarContenido(ruta: string) {
+    this.router.navigate([ruta]);
+  }
 
-  changeLayout(layoutMode: string) {
-
+  rutaActiva(ruta: string): boolean {
+    return this.router.url === ruta;
   }
 }

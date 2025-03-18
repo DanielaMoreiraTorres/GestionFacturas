@@ -1,5 +1,6 @@
 $color-primary: #A2CADF;
 $color-secondary: #F2F2F2;
+$header-height: 60px;
 
 .bg-primary-app {
     background-color: $color-primary !important;
@@ -7,4 +8,22 @@ $color-secondary: #F2F2F2;
 
 .bg-secondary-app {
     background-color: $color-secondary !important;
+}
+
+#layout-wrapper {
+    margin: 0 auto;
+}
+
+.main-content {
+    overflow: visible;
+
+    .content {
+        padding: 0 15px 10px 15px;
+        margin-top: $header-height;
+    }
+}
+
+.page-content {
+    margin-top: $header-height;
+    min-height: calc(100vh - $header-height);
 }

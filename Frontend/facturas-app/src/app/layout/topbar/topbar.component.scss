@@ -1,5 +1,5 @@
 $color-primary-topbar: #A2CADF;
-$color-secondary-topbar: #F2F2F2;
+$color-secondary-topbar: #C2C2C2;
 
 #page-topbar {
     position: fixed;
@@ -28,10 +28,31 @@ $color-secondary-topbar: #F2F2F2;
     align-items: center;
     margin: 0 auto;
     height: 60px;
-
-    .dropdown .show {
-        &.header-item {
-            background-color: blue;
-        }
-    }
 }
+
+.nav-menu {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .nav-item {
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: #fff;
+  }
+  
+  .nav-item:hover {
+    background-color: $color-secondary-topbar !important;
+    color: #333 !important;
+  }
+  
+  .nav-item.active {
+    background-color: #fff !important;
+    color: $color-secondary-topbar !important;
+    border-radius: 5px;
+  }
+  

@@ -23,8 +23,6 @@ export class AppComponent implements OnInit {
   });
 
   public authStatusChangeEffect = effect(() => {
-    console.log("estado",this.servicioAutenticacion.estadoAutenticacion())
-
     switch (this.servicioAutenticacion.estadoAutenticacion()) {
       case EstadoAutenticacion.comprobando:
         return;
