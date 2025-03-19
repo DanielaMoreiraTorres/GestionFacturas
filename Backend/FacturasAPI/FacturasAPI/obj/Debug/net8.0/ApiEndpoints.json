@@ -1,5 +1,143 @@
 [
   {
+    "ContainingType": "FacturasAPI.Controllers.ClienteController",
+    "Method": "Listar",
+    "RelativePath": "api/Cliente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelo",
+        "Type": "FacturasAPI.Dominio.Modelo.PeticionLista",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacturasAPI.Controllers.ClienteController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Cliente/eliminar/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacturasAPI.Controllers.ClienteController",
+    "Method": "Modificar",
+    "RelativePath": "api/Cliente/modificar/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "modelo",
+        "Type": "FacturasAPI.Dominio.Cliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacturasAPI.Controllers.ClienteController",
+    "Method": "Agregar",
+    "RelativePath": "api/Cliente/nuevo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelo",
+        "Type": "FacturasAPI.Dominio.Cliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacturasAPI.Controllers.ProductoController",
+    "Method": "Listar",
+    "RelativePath": "api/Producto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelo",
+        "Type": "FacturasAPI.Dominio.Modelo.PeticionLista",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacturasAPI.Controllers.ProductoController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Producto/eliminar/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacturasAPI.Controllers.ProductoController",
+    "Method": "Modificar",
+    "RelativePath": "api/Producto/modificar/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "modelo",
+        "Type": "FacturasAPI.Dominio.Producto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacturasAPI.Controllers.ProductoController",
+    "Method": "Agregar",
+    "RelativePath": "api/Producto/nuevo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelo",
+        "Type": "FacturasAPI.Dominio.Producto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FacturasAPI.Controllers.SeguridadController",
     "Method": "InicioSesion",
     "RelativePath": "api/Seguridad/inicioSesion",

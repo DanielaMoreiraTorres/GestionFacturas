@@ -1,12 +1,14 @@
 using FacturasAPI.Aplicacion.Usuario;
 using FacturasAPI.Dominio;
 using FacturasAPI.Dominio.Modelo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FacturasAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly ILogger<UsuarioController> _logger;

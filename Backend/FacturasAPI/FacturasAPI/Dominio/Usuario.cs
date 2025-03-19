@@ -33,7 +33,6 @@ namespace FacturasAPI.Dominio
         public string Correo { get; set; } = string.Empty;
 
         [StringLength(500, MinimumLength = 5)]
-        //[JsonIgnore]
         [Column("contrasena")]
         public string? Contrasena { get; set; }
 

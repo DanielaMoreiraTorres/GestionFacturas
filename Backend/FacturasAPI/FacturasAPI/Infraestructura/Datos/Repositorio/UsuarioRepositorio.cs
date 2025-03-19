@@ -97,14 +97,14 @@ namespace FacturasAPI.Infraestructura.Datos.Repositorio
 
         public async Task<Usuario> ModificarUsuario(Usuario modelo)
         {
-            var entry = _context.Entry(modelo);
-            foreach (var property in typeof(Usuario).GetProperties())
+            var entidad = _context.Entry(modelo);
+            foreach (var propiedad in typeof(Usuario).GetProperties())
             {
-                var newValue = property.GetValue(modelo);
-                if (newValue != null && property.Name != "Id")
+                var nuevoValor = propiedad.GetValue(modelo);
+                if (nuevoValor != null && propiedad.Name != "Id")
                 {
-                    entry.Property(property.Name).CurrentValue = newValue;
-                    entry.Property(property.Name).IsModified = true;
+                    entidad.Property(propiedad.Name).CurrentValue = nuevoValor;
+                    entidad.Property(propiedad.Name).IsModified = true;
                 }
             }
 
@@ -128,7 +128,7 @@ namespace FacturasAPI.Infraestructura.Datos.Repositorio
 
         public async Task<bool> ObtenerUsuario(string usuario, int? id = null)
         {
-            var usuarioObj = await _context.Usuario.Where(x => x.NombreUsuario == usuario).FirstOrDefaultAsync();
+            var usuarioObj = await _context.Usuario.Where(x => x.NombreUsuario == usuario && x.Activo == true).FirstOrDefaultAsync();
             if (usuarioObj != null)
             {
                 _context.Entry(usuarioObj).State = EntityState.Detached;

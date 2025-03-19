@@ -13,7 +13,7 @@ namespace FacturasAPI.Infraestructura.Datos.IRepositorio
         Task<Usuario> ModificarUsuario(Usuario modelo);
         Task<Usuario> EliminarUsuario(Usuario modelo);
         Task<bool> ExisteUsuario(int id);
-        Task<Usuario> ObtenerUsuarioPorId(int id);
+        Task<Usuario?> ObtenerUsuarioPorId(int id);
         Task<bool> ObtenerUsuario(string usuario, int? id = null);
     }
 }

@@ -155,8 +155,8 @@ namespace FacturasAPI.Aplicacion.Usuario
                 var contrasenaHasheada = HashearContrasena(modelo.Contrasena);
                 modelo.Contrasena = contrasenaHasheada;
 
-                var usuarios = await _usuarioRepositorio.AgregarUsuario(modelo);
-                return new Respuesta(usuarios);
+                var usuario = await _usuarioRepositorio.AgregarUsuario(modelo);
+                return new Respuesta(usuario);
             }
 
             return new Respuesta()
@@ -183,8 +183,8 @@ namespace FacturasAPI.Aplicacion.Usuario
                     modelo.Contrasena = contrasenaHasheada;
                 }
 
-                var usuarios = await _usuarioRepositorio.ModificarUsuario(modelo);
-                return new Respuesta(usuarios);
+                var usuario = await _usuarioRepositorio.ModificarUsuario(modelo);
+                return new Respuesta(usuario);
             }
 
             return new Respuesta()

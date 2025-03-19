@@ -10,5 +10,8 @@ namespace FacturasAPI.Infraestructura.Persistencia
         }
 
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<TipoIdentificacion> TipoIdentificacion { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Producto> Producto { get; set; }
     }
 }
