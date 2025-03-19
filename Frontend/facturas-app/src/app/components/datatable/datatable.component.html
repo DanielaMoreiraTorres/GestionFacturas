@@ -1,0 +1,38 @@
+<div class="tabla-container">
+    <!-- Barra de búsqueda -->
+    <input type="text" [(ngModel)]="peticion.campoBuscar" (input)="buscar()" [placeholder]="placeholderBuscar" />
+
+    <!-- Tabla -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th *ngFor="let columna of columnas" (click)="ordenar(columna.clave)">
+                    {{ columna.titulo }}
+                    <span *ngIf="peticion.campoOrdenar === columna.clave">
+                        {{ peticion.direccionOrdenar === 'asc' ? '🔼' : '🔽' }}
+                    </span>
+                </th>
+                <th *ngIf="botonesAcciones.length">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let fila of datos">
+                <td *ngFor="let columna of columnas">{{ fila[columna.clave] || '' }}</td>
+                <td *ngIf="botonesAcciones.length" class="acciones">
+                    <button *ngFor="let btn of botonesAcciones" [ngClass]="btn.clase || 'boton-defecto'"
+                        (click)="clicAccion.emit({ accion: btn.accion, fila: fila })" [title]="btn.etiqueta">
+                        <i [class]="btn.icono"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Paginación -->
+    <div class="pagination">
+        <button (click)="cambiarPaginaActual(peticion.pagina - 1)" [disabled]="peticion.pagina <= 1">Anterior</button>
+        <span>Página {{ peticion.pagina }} de {{ obtenerTotalPaginas() }}</span>
+        <button (click)="cambiarPaginaActual(peticion.pagina + 1)"
+            [disabled]="peticion.pagina >= Math.ceil(totalRegistros / peticion.tamanoPagina)">Siguiente</button>
+    </div>
+</div>

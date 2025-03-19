@@ -1,5 +1,4 @@
-﻿using FacturasAPI.Dominio;
-using FacturasAPI.Dominio.Modelo;
+﻿using FacturasAPI.Dominio.Modelo;
 using FacturasAPI.Infraestructura.Datos.IRepositorio;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,6 +21,9 @@ namespace FacturasAPI.Aplicacion.Usuario
 
         public async Task<Respuesta> InicioSesion(InicioSesion modelo)
         {
+            var contrasenaHasheada = HashearContrasena(modelo.Contrasena);
+            modelo.Contrasena = contrasenaHasheada;
+
             var usuario = await _usuarioRepositorio.ObtenerUsuario(modelo);
 
             if (usuario == null)
@@ -29,8 +31,8 @@ namespace FacturasAPI.Aplicacion.Usuario
                 return new Respuesta()
                 {
                     Exito = false,
-                    Mensaje = "Login fallo",
-                    Errores = ["Usuario y/o clave incorrectos"]
+                    Mensaje = "Usuario y/o clave incorrectos",
+                    Errores = ["Login falló"]
                 };
             }
 
@@ -39,8 +41,8 @@ namespace FacturasAPI.Aplicacion.Usuario
                 return new Respuesta()
                 {
                     Exito = false,
-                    Mensaje = "Login fallo",
-                    Errores = ["Usuario inactivo"]
+                    Mensaje = "Usuario inactivo",
+                    Errores = ["Login falló"]
                 };
             }
 
@@ -140,6 +142,93 @@ namespace FacturasAPI.Aplicacion.Usuario
             return result;
         }
 
+        public async Task<Respuesta> Listar(PeticionLista modelo)
+        {
+            var usuarios = await _usuarioRepositorio.ObtenerUsuarios(modelo);
+            return new Respuesta(usuarios);
+        }
+
+        public async Task<Respuesta> Agregar(Dominio.Usuario modelo)
+        {
+            if (!await _usuarioRepositorio.ObtenerUsuario(modelo.NombreUsuario))
+            {
+                var contrasenaHasheada = HashearContrasena(modelo.Contrasena);
+                modelo.Contrasena = contrasenaHasheada;
+
+                var usuarios = await _usuarioRepositorio.AgregarUsuario(modelo);
+                return new Respuesta(usuarios);
+            }
+
+            return new Respuesta()
+            {
+                Exito = false,
+                Mensaje = "El nombre de usuario ya está en uso por otro usuario",
+                Errores = ["Registro falló"]
+            };
+        }
+
+        /// <summary>
+        /// Metodo para modificar la informacion del usuario
+        /// </summary>
+        /// <param name="modelo">Modelo  contiene los datos del usuario</param>
+        /// <param name="id">Id del usuario</param>
+        /// <returns>Modelo del usuario modificado</returns>
+        public async Task<Respuesta> Modificar(int id, Dominio.Usuario modelo)
+        {
+            if (await _usuarioRepositorio.ObtenerUsuario(modelo.NombreUsuario, id))
+            {
+                if (!string.IsNullOrEmpty(modelo.Contrasena))
+                {
+                    var contrasenaHasheada = HashearContrasena(modelo.Contrasena);
+                    modelo.Contrasena = contrasenaHasheada;
+                }
+
+                var usuarios = await _usuarioRepositorio.ModificarUsuario(modelo);
+                return new Respuesta(usuarios);
+            }
+
+            return new Respuesta()
+            {
+                Exito = false,
+                Mensaje = "El nombre de usuario ya está en uso por otro usuario",
+                Errores = ["Modificación falló"]
+            };
+        }
+
+        public async Task<Respuesta> Eliminar(int id)
+        {
+            var usuario = await _usuarioRepositorio.ObtenerUsuarioPorId(id);
+            if (usuario != null)
+            {
+                await _usuarioRepositorio.EliminarUsuario(usuario);
+                return new Respuesta(usuario);
+            }
+
+            return new Respuesta()
+            {
+                Exito = false,
+                Mensaje = "No se pudo eliminar el usuario",
+                Errores = ["Eliminación falló"]
+            };
+        }
+
+        public async Task<Respuesta> Obtener(int id)
+        {
+            var usuario = await _usuarioRepositorio.ObtenerUsuarioPorId(id);
+
+            if (usuario != null)
+            {
+                return new Respuesta(usuario);
+            }
+
+            return new Respuesta()
+            {
+                Exito = false,
+                Mensaje = "Error a obtener usuario",
+                Errores = ["Obtener por Id falló"]
+            };
+        }
+
         JwtSecurityToken GenerarJWT(Dominio.Usuario usuario)
         {
             var claims = new List<Claim>
@@ -171,6 +260,26 @@ namespace FacturasAPI.Aplicacion.Usuario
             }
 
             return refeshToken;
-        }       
+        }
+
+        public async Task<bool> Existe(int id)
+        {
+            return await _usuarioRepositorio.ExisteUsuario(id);
+        }
+
+        public string HashearContrasena(string contrasena)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                string saltedPassword = contrasena;
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(saltedPassword));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
     }
 }

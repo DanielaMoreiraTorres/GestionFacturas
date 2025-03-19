@@ -31,7 +31,7 @@ export class ServicioMensaje {
     return Swal.fire({
       html: message,
       showCancelButton: true,
-      confirmButtonColor: '#00a1e1',
+      confirmButtonColor: '#A2CADF',
       cancelButtonColor: '#ccc',
       confirmButtonText: 'Sí',
       cancelButtonText: 'No'

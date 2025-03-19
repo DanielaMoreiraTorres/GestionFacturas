@@ -22,6 +22,53 @@ namespace FacturasAPI.Infraestructura.Datos.Repositorio
             return await _context.Usuario.Where(x => x.NombreUsuario == modelo.Usuario && x.Contrasena == modelo.Contrasena).FirstOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<UsuarioTabla>> ObtenerUsuarios(PeticionLista modelo)
+        {
+            var consulta = _context.Usuario.AsQueryable();
+
+            if (!string.IsNullOrEmpty(modelo.CampoBuscar))
+            {
+                consulta = consulta.Where(u => u.Nombres.Contains(modelo.CampoBuscar)
+                                      || u.Apellidos.Contains(modelo.CampoBuscar));
+            }
+
+            if (!string.IsNullOrEmpty(modelo.CampoOrdenar) && !string.IsNullOrEmpty(modelo.DireccionOrdenar))
+            {
+                var parametro = modelo.CampoOrdenar.ToLower();
+                var direccion = modelo.DireccionOrdenar.ToLower();
+
+                if (direccion == "asc")
+                {
+                    consulta = consulta.OrderBy(x => EF.Property<object>(x, parametro));
+                }
+                else if (direccion == "desc")
+                {
+                    consulta = consulta.OrderByDescending(x => EF.Property<object>(x, parametro));
+                }
+            }
+
+            consulta = consulta.Skip((modelo.Pagina - 1) * modelo.TamanoPagina)
+                         .Take(modelo.TamanoPagina).Where(x => x.Activo == true);
+            IEnumerable<Usuario> usuarios = await consulta.ToListAsync();
+            List<UsuarioTabla> listaUsuarios = new();
+
+            foreach (var usuario in usuarios)
+            {
+                var usuarioTabla = new UsuarioTabla
+                {
+                    Id = usuario.Id ?? 0,
+                    Nombres = usuario.Nombres,
+                    Apellidos = usuario.Apellidos,
+                    NombreUsuario = usuario.NombreUsuario,
+                    Correo = usuario.Correo,
+                };
+
+                listaUsuarios.Add(usuarioTabla);
+            }
+
+            return listaUsuarios;
+        }
+
         public async Task<Usuario> ModificarToken(Usuario modelo)
         {
             await _context.SaveChangesAsync();
@@ -31,6 +78,69 @@ namespace FacturasAPI.Infraestructura.Datos.Repositorio
         public async Task<Usuario?> VerificarToken(int id)
         {
             return await _context.Usuario.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<Usuario> AgregarUsuario(Usuario modelo)
+        {
+            _context.Usuario.Add(modelo);
+            await _context.SaveChangesAsync();
+            return modelo;
+        }
+
+        public async Task<bool> ExisteUsuario(int id)
+        {
+            var usuario = await _context.Usuario.FindAsync(id);
+            _context.Entry(usuario).State = EntityState.Detached;
+
+            return usuario != null ? true : false;
+        }
+
+        public async Task<Usuario> ModificarUsuario(Usuario modelo)
+        {
+            var entry = _context.Entry(modelo);
+            foreach (var property in typeof(Usuario).GetProperties())
+            {
+                var newValue = property.GetValue(modelo);
+                if (newValue != null && property.Name != "Id")
+                {
+                    entry.Property(property.Name).CurrentValue = newValue;
+                    entry.Property(property.Name).IsModified = true;
+                }
+            }
+
+            //_context.Usuario.Update(modelo);
+            await _context.SaveChangesAsync();
+            return modelo;
+        }
+
+        public async Task<Usuario> EliminarUsuario(Usuario modelo)
+        {
+            modelo.Activo = false;
+            modelo.FechaActualizacion = DateTime.Now;
+            await _context.SaveChangesAsync();
+            return modelo;
+        }
+
+        public async Task<Usuario?> ObtenerUsuarioPorId(int id)
+        {
+            return await _context.Usuario.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> ObtenerUsuario(string usuario, int? id = null)
+        {
+            var usuarioObj = await _context.Usuario.Where(x => x.NombreUsuario == usuario).FirstOrDefaultAsync();
+            if (usuarioObj != null)
+            {
+                _context.Entry(usuarioObj).State = EntityState.Detached;
+                if (id != null && usuarioObj.Id != id)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

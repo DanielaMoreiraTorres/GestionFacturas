@@ -1,0 +1,19 @@
+<div class="modal-overlay" *ngIf="isVisible">
+    <div [ngClass]="['modal-content','modal-container', tamano]">
+        <div class="modal-header">
+            <h5 class="modal-title mt-0">{{ titulo }}</h5>
+            <button type="button" class="btn-close" (click)="cerrar()" aria-hidden="true"></button>
+        </div>
+        <div class="modal-body">
+            <ng-content></ng-content>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="cerrar()">
+                Cancelar
+            </button>
+            <button type="button" class="btn btn-info" (click)="confirmar()">
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>
