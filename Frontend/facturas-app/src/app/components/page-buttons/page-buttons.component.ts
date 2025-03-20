@@ -11,14 +11,14 @@ import { PageButton } from './pagebutton.model';
 })
 export class PageButtonsComponent {
 
-  @Input() title: string;
-  @Input() items: PageButton[] = [];
+  @Input() titulo: string;
+  @Input() elementos: PageButton[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    if (!this.items) this.items = [];
-    this.items.forEach((it: any) => {
+    if (!this.elementos) this.elementos = [];
+    this.elementos.forEach((it: any) => {
       it.visible = it.visible === undefined ? true : it.visible
     });
   }

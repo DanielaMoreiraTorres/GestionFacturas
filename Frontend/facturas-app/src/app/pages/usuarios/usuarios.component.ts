@@ -8,7 +8,7 @@ import { UsuarioServicio } from 'src/app/api/user/user.service';
 import { Peticion } from 'src/app/core/models/peticion.model';
 import { DatosUsuario } from 'src/app/api/user/user.models';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ServicioAutenticacion } from 'src/app/account/services/auth.service';
@@ -65,7 +65,8 @@ export class UsuarioComponent {
             nombreUsuario: ['', [Validators.required]],
             correo: ['', [Validators.required, Validators.email]],
             contrasena: ['', [Validators.required, Validators.minLength(6)]],
-        });
+            contrasenaRepetida: ['', [Validators.required, Validators.minLength(6)]],
+        }, { validators: this.validarContrasenas() });
     }
 
     ngOnInit(): void {
@@ -76,10 +77,10 @@ export class UsuarioComponent {
     private _initBotones() {
         this.botones = [
             {
-                label: 'NUEVO',
-                icon: 'fas fa-plus',
-                cssClass: 'btn-success',
-                actionType: () => this.agregar(),
+                etiqueta: 'NUEVO',
+                icono: 'fas fa-plus',
+                clasesCss: 'btn-success',
+                tipoAccion: () => this.agregar(),
             },
         ];
     }
@@ -87,7 +88,6 @@ export class UsuarioComponent {
     obtenerUsuarios(peticion: Peticion = { pagina: 1, tamanoPagina: 5 }): void {
         this.apiUsuario.obtenerUsuarios(peticion).subscribe({
             next: (data) => {
-                console.log("data", data)
                 this.usuarios = data || [];
                 this.totalRegistros = data?.length || 0;
                 this.loading = false;
@@ -99,7 +99,19 @@ export class UsuarioComponent {
         });
     }
 
-    getErrors() {
+    validarContrasenas(): ValidatorFn {
+        return (control: AbstractControl): ValidationErrors | null => {
+            const contrasena = control.get('contrasena');
+            const contrasenaRepetida = control.get('contrasenaRepetida');
+
+            if (contrasena && contrasenaRepetida && contrasena.value !== contrasenaRepetida.value) {
+                return { contrasenasNoCoinciden: true };
+            }
+            return null;
+        };
+    }
+
+    obtenerErrores() {
         const errors: { [key: string]: any } = {};
         Object.keys(this.usuarioForm.controls).forEach(controlName => {
             const control = this.usuarioForm.get(controlName);
@@ -281,6 +293,7 @@ export class UsuarioComponent {
             nombreUsuario: usuario.nombreUsuario,
             correo: usuario.correo,
             contrasena: '',
+            contrasenaRepetida: ''
         });
 
         this.modalVisible = true;

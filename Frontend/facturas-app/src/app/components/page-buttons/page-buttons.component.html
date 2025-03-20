@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-12">
     <div class="page-title-box d-flex align-items-center justify-content-between mb-2 mt-2">
-      <h4 class="mb-0 font-size-18">{{ title }}</h4>
+      <h4 class="mb-0 font-size-18">{{ titulo }}</h4>
       <div class="page-title-right">
         <div class="d-flex flex-wrap gap-1">
-          @for (item of items; track $index) { @if(item.visible){
-          <button type="button" [disabled]="item.disabled" class="btn btn-primary btn-sm {{ item.cssClass }}"
-            (click)="item?.actionType()">
-            @if(item.icon){<i class="{{ item.icon }} font-size-16 align-middle me-2"></i>} @if(!item.onlyIcon){
-            {{ item.label }}
+          @for (elemento of elementos; track $index) { @if(elemento.visible){
+          <button type="button" [disabled]="elemento.deshabilitado" class="btn btn-primary btn-sm {{ elemento.clasesCss }}"
+            (click)="elemento?.tipoAccion()">
+            @if(elemento.icono){<i class="{{ elemento.icono }} font-size-16 align-middle me-2"></i>} @if(!elemento.soloIcono){
+            {{ elemento.etiqueta }}
             }
           </button>
           } }

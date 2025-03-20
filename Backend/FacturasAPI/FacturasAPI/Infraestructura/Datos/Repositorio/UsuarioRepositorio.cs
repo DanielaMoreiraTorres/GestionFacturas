@@ -80,11 +80,20 @@ namespace FacturasAPI.Infraestructura.Datos.Repositorio
             return await _context.Usuario.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<Usuario> AgregarUsuario(Usuario modelo)
+        public async Task<UsuarioModelo> AgregarUsuario(Usuario modelo)
         {
             _context.Usuario.Add(modelo);
             await _context.SaveChangesAsync();
-            return modelo;
+            var usuarioModelo = new UsuarioModelo
+            {
+                Id = modelo.Id,
+                Nombres = modelo.Nombres,
+                Apellidos = modelo.Apellidos,
+                NombreUsuario = modelo.NombreUsuario,
+                Correo = modelo.Correo,
+                Activo = modelo.Activo
+            };
+            return usuarioModelo;
         }
 
         public async Task<bool> ExisteUsuario(int id)
@@ -95,7 +104,7 @@ namespace FacturasAPI.Infraestructura.Datos.Repositorio
             return usuario != null ? true : false;
         }
 
-        public async Task<Usuario> ModificarUsuario(Usuario modelo)
+        public async Task<UsuarioModelo> ModificarUsuario(Usuario modelo)
         {
             var entidad = _context.Entry(modelo);
             foreach (var propiedad in typeof(Usuario).GetProperties())
@@ -110,15 +119,33 @@ namespace FacturasAPI.Infraestructura.Datos.Repositorio
 
             //_context.Usuario.Update(modelo);
             await _context.SaveChangesAsync();
-            return modelo;
+            var usuarioModelo = new UsuarioModelo
+            {
+                Id = modelo.Id,
+                Nombres = modelo.Nombres,
+                Apellidos = modelo.Apellidos,
+                NombreUsuario = modelo.NombreUsuario,
+                Correo = modelo.Correo,
+                Activo = modelo.Activo
+            };
+            return usuarioModelo;
         }
 
-        public async Task<Usuario> EliminarUsuario(Usuario modelo)
+        public async Task<UsuarioModelo> EliminarUsuario(Usuario modelo)
         {
             modelo.Activo = false;
             modelo.FechaActualizacion = DateTime.Now;
             await _context.SaveChangesAsync();
-            return modelo;
+            var usuarioModelo = new UsuarioModelo
+            {
+                Id = modelo.Id,
+                Nombres = modelo.Nombres,
+                Apellidos = modelo.Apellidos,
+                NombreUsuario = modelo.NombreUsuario,
+                Correo = modelo.Correo,
+                Activo = modelo.Activo
+            };
+            return usuarioModelo;
         }
 
         public async Task<Usuario?> ObtenerUsuarioPorId(int id)

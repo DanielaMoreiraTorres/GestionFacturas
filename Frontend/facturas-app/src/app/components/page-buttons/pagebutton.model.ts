@@ -1,10 +1,10 @@
 export interface PageButton{
-    label:string,
-    icon?: String | undefined;
-    actionType?: Function | undefined;
-    cssClass?: String | undefined;
+    etiqueta:string,
+    icono?: String | undefined;
+    tipoAccion?: Function | undefined;
+    clasesCss?: String | undefined;
     visible?:boolean | undefined;
-    disabled?:boolean | undefined;
-    onlyIcon?:boolean | undefined;
+    deshabilitado?:boolean | undefined;
+    soloIcono?:boolean | undefined;
   }
   

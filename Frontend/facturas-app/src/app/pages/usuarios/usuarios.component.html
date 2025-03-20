@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <app-page-buttons title="{{titulo}}" [items]="botones"></app-page-buttons>
+    <app-page-buttons titulo="{{titulo}}" [elementos]="botones"></app-page-buttons>
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -19,29 +19,32 @@
                         <div class="row mb-3">
                             <div class="col-12">
                                 <label for="nombres">Nombres</label>
-                                <input [ngClass]="{'is-invalid': isSubmitted && getErrors()['nombres']}" id="nombres"
-                                    formControlName="nombres" type="text" class="form-control" placeholder="Nombres">
-                                <div *ngIf="isSubmitted && getErrors()['nombres']?.required" class="text-danger">El
+                                <input [ngClass]="{'is-invalid': isSubmitted && obtenerErrores()['nombres']}"
+                                    id="nombres" formControlName="nombres" type="text" class="form-control"
+                                    placeholder="Nombres">
+                                <div *ngIf="isSubmitted && obtenerErrores()['nombres']?.required" class="text-danger">El
                                     nombre es requerido.</div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-12">
                                 <label for="apellidos">Apellidos</label>
-                                <input [ngClass]="{'is-invalid': isSubmitted && getErrors()['apellidos']}"
+                                <input [ngClass]="{'is-invalid': isSubmitted && obtenerErrores()['apellidos']}"
                                     id="apellidos" formControlName="apellidos" type="text" class="form-control"
                                     placeholder="Apellidos">
-                                <div *ngIf="isSubmitted && getErrors()['apellidos']?.required" class="text-danger">El
+                                <div *ngIf="isSubmitted && obtenerErrores()['apellidos']?.required" class="text-danger">
+                                    El
                                     apellido es requerido.</div>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-12">
                                 <label for="nombreUsuario">Usuario</label>
-                                <input [ngClass]="{'is-invalid': isSubmitted && getErrors()['nombreUsuario']}"
+                                <input [ngClass]="{'is-invalid': isSubmitted && obtenerErrores()['nombreUsuario']}"
                                     id="nombreUsuario" formControlName="nombreUsuario" type="text" class="form-control"
                                     placeholder="Usuario">
-                                <div *ngIf="isSubmitted && getErrors()['nombreUsuario']?.required" class="text-danger">
+                                <div *ngIf="isSubmitted && obtenerErrores()['nombreUsuario']?.required"
+                                    class="text-danger">
                                     El
                                     nombre de usuario es requerido.</div>
                             </div>
@@ -49,12 +52,12 @@
                         <div class="row mb-3">
                             <div class="col-12">
                                 <label for="correo">Correo</label>
-                                <input [ngClass]="{'is-invalid': isSubmitted && getErrors()['correo']}" id="correo"
+                                <input [ngClass]="{'is-invalid': isSubmitted && obtenerErrores()['correo']}" id="correo"
                                     formControlName="correo" type="email" class="form-control"
                                     placeholder="Correo electrónico">
-                                <div *ngIf="isSubmitted && getErrors()['correo']" class="text-danger">
-                                    <span *ngIf="getErrors()['correo']?.required">El correo es requerido.</span>
-                                    <span *ngIf="getErrors()['correo']?.email">El formato del
+                                <div *ngIf="isSubmitted && obtenerErrores()['correo']" class="text-danger">
+                                    <span *ngIf="obtenerErrores()['correo']?.required">El correo es requerido.</span>
+                                    <span *ngIf="obtenerErrores()['correo']?.email">El formato del
                                         correo no es válido.</span>
                                 </div>
                             </div>
@@ -62,13 +65,34 @@
                         <div class="row mb-3">
                             <div class="col-12">
                                 <label for="contrasena">Contraseña</label>
-                                <input [ngClass]="{'is-invalid': isSubmitted && getErrors()['contrasena']}"
+                                <input [ngClass]="{'is-invalid': isSubmitted && obtenerErrores()['contrasena']}"
                                     id="contrasena" formControlName="contrasena" type="password" class="form-control"
                                     placeholder="Contraseña">
-                                <div *ngIf="isSubmitted && getErrors()['contrasena']" class="text-danger">
-                                    <span *ngIf="getErrors()['contrasena']?.required">La contraseña es requerida.</span>
-                                    <span *ngIf="getErrors()['contrasena']?.minlength">La contraseña debe tener al menos
+                                <div *ngIf="isSubmitted && obtenerErrores()['contrasena']" class="text-danger">
+                                    <span *ngIf="obtenerErrores()['contrasena']?.required">La contraseña es
+                                        requerida.</span>
+                                    <span *ngIf="obtenerErrores()['contrasena']?.minlength">La contraseña debe tener al
+                                        menos
                                         6 caracteres.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <label for="contrasenaRepetida">Repetir Contraseña</label>
+                                <input [ngClass]="{'is-invalid': isSubmitted && obtenerErrores()['contrasenaRepetida']}"
+                                    id="contrasenaRepetida" formControlName="contrasenaRepetida" type="password"
+                                    class="form-control" placeholder="Repetir Contraseña">
+                                <div *ngIf="isSubmitted && obtenerErrores()['contrasenaRepetida']" class="text-danger">
+                                    <span *ngIf="obtenerErrores()['contrasenaRepetida']?.required">La contraseña es
+                                        requerida.</span>
+                                    <span *ngIf="obtenerErrores()['contrasenaRepetida']?.minlength">La contraseña debe
+                                        tener al menos
+                                        6 caracteres.</span>
+                                </div>
+                                <div *ngIf="isSubmitted && usuarioForm.errors?.['contrasenasNoCoinciden']"
+                                    class="text-danger">
+                                    Las contraseñas no coinciden.
                                 </div>
                             </div>
                         </div>

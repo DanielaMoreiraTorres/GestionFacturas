@@ -74,10 +74,10 @@ export class ProductoComponent {
     private _initBotones() {
         this.botones = [
             {
-                label: 'NUEVO',
-                icon: 'fas fa-plus',
-                cssClass: 'btn-success',
-                actionType: () => this.agregar(),
+                etiqueta: 'NUEVO',
+                icono: 'fas fa-plus',
+                clasesCss: 'btn-success',
+                tipoAccion: () => this.agregar(),
             },
         ];
     }
