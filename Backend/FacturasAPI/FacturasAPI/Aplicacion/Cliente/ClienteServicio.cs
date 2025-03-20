@@ -1,6 +1,5 @@
 ﻿using FacturasAPI.Dominio.Modelo;
 using FacturasAPI.Infraestructura.Datos.IRepositorio;
-using FacturasAPI.Infraestructura.Datos.Repositorio;
 
 namespace FacturasAPI.Aplicacion.Cliente
 {

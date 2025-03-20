@@ -8,6 +8,7 @@ using System.Text;
 using FacturasAPI.Aplicacion.Usuario;
 using FacturasAPI.Aplicacion.Cliente;
 using FacturasAPI.Aplicacion.Producto;
+using FacturasAPI.Aplicacion.Catalogo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 builder.Services.AddScoped<IClienteServicio, ClienteServicio>();
 builder.Services.AddScoped<IProductoRepositorio, ProductoRepositorio>();
 builder.Services.AddScoped<IProductoServicio, ProductoServicio>();
+builder.Services.AddScoped<ICatalogoRepositorio, CatalogoRepositorio>();
+builder.Services.AddScoped<ICatalogoServicio, CatalogoServicio>();
 
 var configuration = builder.Configuration;
 string key = configuration.GetSection("Token")["Key"]!;

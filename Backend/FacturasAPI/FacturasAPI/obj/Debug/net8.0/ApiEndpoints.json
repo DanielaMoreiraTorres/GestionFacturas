@@ -1,5 +1,15 @@
 [
   {
+    "ContainingType": "FacturasAPI.Controllers.CatalogoController",
+    "Method": "CatalogoTipoIdentificacion",
+    "RelativePath": "api/Catalogo/tipoIdentificacion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FacturasAPI.Controllers.ClienteController",
     "Method": "Listar",
     "RelativePath": "api/Cliente",
