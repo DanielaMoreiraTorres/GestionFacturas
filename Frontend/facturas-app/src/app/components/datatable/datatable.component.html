@@ -17,7 +17,12 @@
         </thead>
         <tbody>
             <tr *ngFor="let fila of datos">
-                <td *ngFor="let columna of columnas">{{ fila[columna.clave] || '' }}</td>
+                <td *ngFor="let columna of columnas">
+                    <span>
+                        {{ columna.clave === 'precio' ? (fila[columna.clave] | currency: 'USD': 'symbol': '1.2-2') :
+                        (fila[columna.clave] || '') }}
+                    </span>
+                </td>
                 <td *ngIf="botonesAcciones.length" class="acciones">
                     <button *ngFor="let btn of botonesAcciones" [ngClass]="btn.clase || 'boton-defecto'"
                         (click)="clicAccion.emit({ accion: btn.accion, fila: fila })" [title]="btn.etiqueta">

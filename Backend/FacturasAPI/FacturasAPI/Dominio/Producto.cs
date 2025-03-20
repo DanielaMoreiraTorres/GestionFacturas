@@ -26,7 +26,7 @@ namespace FacturasAPI.Dominio
 
         [Required]
         [Column("precio")]
-        public double? Precio { get; set; }
+        public decimal? Precio { get; set; }
 
         [Required]
         [Column("activo")]
