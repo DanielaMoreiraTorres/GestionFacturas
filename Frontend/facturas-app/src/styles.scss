@@ -3,170 +3,27 @@ $color-secondary: #F2F2F2;
 $header-height: 60px;
 
 .bg-primary-app {
-    background-color: $color-primary !important;
+  background-color: $color-primary !important;
 }
 
 .bg-secondary-app {
-    background-color: $color-secondary !important;
+  background-color: $color-secondary !important;
 }
 
 #layout-wrapper {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .main-content {
-    overflow: visible;
+  overflow: visible;
 
-    .content {
-        padding: 0 15px 10px 15px;
-        margin-top: $header-height;
-    }
+  .content {
+    padding: 0 15px 10px 15px;
+    margin-top: $header-height;
+  }
 }
 
 .page-content {
-    margin-top: $header-height;
-    min-height: calc(100vh - $header-height);
+  margin-top: $header-height;
+  min-height: calc(100vh - $header-height);
 }
-
-/* Contenedor principal del toast */
-#toast-container {
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    right: 0;
-    min-width: 250px !important;
-    padding: 10px !important;
-  }
-  
-  /* Toast individuales (mensajes de éxito, error, advertencia, etc.) */
-  .toast {
-    border-radius: 5px;
-    padding: 15px;
-    font-size: 16px;
-    line-height: 20px;
-    min-width: 250px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
-  
-  /* Toaster close button */
-  .toast-close-button {
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Toast success */
-  .toast-success {
-    background-color: #28a745;
-    color: white;
-    border-left: 5px solid #218838;
-    padding: 8px !important;
-  }
-  
-  /* Toast error */
-  .toast-error {
-    background-color: #dc3545;
-    color: white;
-    border-left: 5px solid #c82333;
-    padding: 8px !important;
-  }
-  
-  /* Toast warning */
-  .toast-warning {
-    background-color: #ffc107;
-    color: white;
-    border-left: 5px solid #e0a800;
-    padding: 8px !important;
-  }
-  
-  /* Toast info */
-  .toast-info {
-    background-color: #17a2b8;
-    color: white;
-    border-left: 5px solid #117a8b;
-    padding: 8px !important;
-  }
-  
-  /* Animaciones de entrada y salida */
-  .toast.ng-enter {
-    animation: fadeInRight 0.5s ease-in-out;
-  }
-  
-  .toast.ng-leave {
-    animation: fadeOutRight 0.5s ease-in-out;
-  }
-  
-  @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes fadeOutRight {
-    from {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-  }
-  
-  /* Progreso de la barra (solo si está habilitado en la configuración) */
-  .toast-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: rgba(255, 255, 255, 0.7);
-  }
-  
-  /* Estilos para las posiciones del toast */
-  .toast-top-left {
-    top: 10px;
-    left: 10px;
-  }
-  
-  .toast-top-right {
-    top: 10px;
-    right: 10px;
-  }
-  
-  .toast-bottom-left {
-    bottom: 10px;
-    left: 10px;
-  }
-  
-  .toast-bottom-right {
-    bottom: 10px;
-    right: 10px;
-  }
-  
-  .toast-top-full-width {
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .toast-bottom-full-width {
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }

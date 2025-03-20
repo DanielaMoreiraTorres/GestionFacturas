@@ -31,6 +31,7 @@ export const appConfig: ApplicationConfig = {
         progressBar: false, // Muestra la barra de progreso
         easeTime: 500, // Tiempo de animación para abrir y cerrar el toast
         tapToDismiss: false, // Si el toast desaparece cuando se hace clic
+        closeButton: false,
       }),
       FormsModule,
       SimplebarAngularModule,
