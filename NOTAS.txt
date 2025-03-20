@@ -1,3 +1,6 @@
 En el archivo scriptBaseDatos se encuentra el script de la base de datos en SQL Server, también se encuentra el diagrama, además en las soluciones:
 Backend -> cambiar la cadena de conexion en el archivo appsettings.json -> DefaultConnection
 Frontend -> cambiar la url de la API en el archivo ubicado en la ruta (si es necesario) -> src\environments\environment.ts
+
+Usuario: admin
+Clave: admin
